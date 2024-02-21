@@ -1,9 +1,9 @@
 const mongoose = require("mongoose");
-// require("dotenv").config();
+require("dotenv").config();
 
 // Database connection URL
 const dbUrl = process.env.DB_KEY;
-
+console.log(dbUrl)
 
 // Connect to the database
 const connectToMongo = () => {

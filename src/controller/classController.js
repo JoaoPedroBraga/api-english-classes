@@ -13,15 +13,19 @@ createClass = async (req, res) =>{
     if (!req.body.categoria){
         return res.status(400).json({ message: "O campo Categoria e obrigtório"})   
     }
+    if (!req.body.traducao){
+        return res.status(400).json({ message: "O campo Tradução e obrigtório"})   
+    }
 
     const classExisente = await classModel.find({ info_ingles: req.body.info_ingles});
     if (classExisente.length) {
-        return res.status(200).json({ message:"Livro ou ID Exisente"});
+        return res.status(200).json({ message:"Informação Cadastrada"});
     }
 
     const classe = await classModel.create({
         info_ingles: req.body.info_ingles,
         pronuncia: req.body.pronuncia,
+        traducao:req.body.traducao,
         imagem: req.body.imagem,
         categoria: req.body.categoria
     });
@@ -34,4 +38,14 @@ getClass = async (req, res) =>{
     return  res.status(200).json(classes);
 }
 
-module.exports = { getClass, createClass}
+getClassCategory = async (req, res) => {
+    let filtroCategoria ={};
+    if (req.query.categoria){
+        filtroCategoria = {categoria: req.query.categoria}
+    }
+    const classes = await classModel.find(filtroCategoria);
+    
+    return res.status(200).json(classes);
+}
+
+module.exports = { getClass, createClass, getClassCategory}

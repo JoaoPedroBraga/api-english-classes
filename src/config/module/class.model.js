@@ -4,6 +4,7 @@ const classSchema =  new mongoose.Schema(
     {
         info_ingles: String,
         pronuncia: String,
+        traducao: String,
         imagem: String,
         categoria: String
     },

@@ -1,7 +1,6 @@
-// const { connectToMongo } = require('./../config/connect/connect');
 const { classModel } = require('./../config/module/class.model');
 
-// connectToMongo();
+
 
 createClass = async (req, res) =>{
     if (!req.body.info_ingles){
